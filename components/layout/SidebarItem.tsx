@@ -29,6 +29,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ label, icon: Icon, href }) =>
             <div className="
                     relative
                     hidden 
+                    w-full
                     lg:flex 
                     items-row 
                     gap-4 
