@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React from 'react'
 import useUser from "../../hooks/useUser"
-import { Avatar } from '../Avatar';
+import Avatar from '../Avatar';
 
 interface UserHeroProps {
     userId: string;

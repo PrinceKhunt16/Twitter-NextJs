@@ -4,7 +4,7 @@ import React from 'react'
 import { BeatLoader } from 'react-spinners'
 import Header from '../../components/Header'
 import useUser from '../../hooks/useUser'
-import UserBio from '@/components/users/userBio'
+import UserBio from '../../components/users/userBio'
 
 const UserView = () => {
     const router = useRouter()

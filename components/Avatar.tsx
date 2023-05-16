@@ -9,7 +9,7 @@ interface AvatarProps {
     hasBorder?: boolean;
 }
 
-export const Avatar: React.FC<AvatarProps> = ({ userId, hasBorder, isLarge }) => {
+const Avatar: React.FC<AvatarProps> = ({ userId, hasBorder, isLarge }) => {
     const router = useRouter();
     const { data: fetchedUser } = useUser(userId)
 
@@ -47,3 +47,5 @@ export const Avatar: React.FC<AvatarProps> = ({ userId, hasBorder, isLarge }) =>
         </div>
     )
 }
+
+export default Avatar
