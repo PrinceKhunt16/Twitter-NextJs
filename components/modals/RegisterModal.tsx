@@ -32,7 +32,7 @@ const RegisterModal = () => {
                 password
             })
 
-            signIn('credentials', {
+            await signIn('credentials', {
                 email,
                 password
             })
