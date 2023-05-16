@@ -1,4 +1,5 @@
 import useCurrentUser from '@/hooks/useCurrentUser';
+import useLike from '@/hooks/useLike';
 import useLoginModal from '@/hooks/useLoginModal';
 import { formatDistanceToNowStrict } from 'date-fns';
 import { useRouter } from 'next/router';
@@ -15,6 +16,7 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
     const router = useRouter();
     const loginModal = useLoginModal();
     const { data: currentUser } = useCurrentUser();
+    const { hasLiked, toggleLike } = useLike({ postId: data.id, userId });
 
     const goToUser = useCallback((event: any) => {
         event.stopPropagation();
@@ -32,7 +34,8 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
             return loginModal.onOpen();
         }
 
-    }, [loginModal, currentUser]);
+        toggleLike();
+    }, [loginModal, currentUser, toggleLike]);
 
     const createdAt = useMemo(() => {
         if (!data?.createdAt) {
@@ -42,7 +45,7 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
         return formatDistanceToNowStrict(new Date(data.createdAt));
     }, [data.createdAt])
 
-    const LikeIcon = false ? AiFillHeart : AiOutlineHeart;
+    const LikeIcon = hasLiked ? AiFillHeart : AiOutlineHeart;
 
     return (
         <div
@@ -117,7 +120,7 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
                                 transition 
                                 hover:text-red-500"
                         >
-                            <LikeIcon color={false ? 'red' : ''} size={20} />
+                            <LikeIcon color={hasLiked ? 'red' : ''} size={20} />
                             <p>
                                 {data.likedIds?.length || 0}
                             </p>
